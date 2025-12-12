@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelab Projects | Ryan Scott Kim</title>
+    <style>
+/* ============================================
+   HOMELAB PROJECTS PAGE STYLES
+   ============================================ */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #dbeafe;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --border-color: #e5e7eb;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(37, 99, 235, 0.2);
+    --nav-height: 70px;
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --primary-color: #3b82f6;
+    --primary-hover: #60a5fa;
+    --primary-light: #1e3a8a;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    --border-color: #4b5563;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(59, 130, 246, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navigation - Same as main page */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background-color: var(--bg-primary);
+    box-shadow: 0 2px 10px var(--shadow);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-logo:hover {
+    color: var(--primary-hover);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-primary);
+    box-shadow: 0 4px 12px var(--shadow);
+    border-radius: 8px;
+    list-style: none;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    margin-top: 10px;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 20px;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+.sun-icon,
+.moon-icon {
+    position: absolute;
+    transition: var(--transition);
+}
+
+[data-theme="light"] .moon-icon,
+[data-theme="dark"] .sun-icon {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+[data-theme="light"] .sun-icon,
+[data-theme="dark"] .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition: var(--transition);
+}
+
+/* Projects Page */
+.projects-page {
+    padding-top: calc(var(--nav-height) + 40px);
+    min-height: 100vh;
+    background-color: var(--bg-secondary);
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+.projects-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.projects-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.projects-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Homelab Badge */
+.homelab-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Project Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Project Card */
+.project-card {
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px var(--shadow-hover);
+}
+
+/* Project Image */
+.project-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* INSTRUCTION: Replace the emoji with an actual project screenshot
+   Example: <img src="homelab-screenshot.jpg" alt="Project Name"> */
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Status Badge */
+.status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.status-active {
+    color: #059669;
+}
+
+.status-progress {
+    color: #d97706;
+}
+
+.status-planned {
+    color: #7c3aed;
+}
+
+/* Project Content */
+.project-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card h3 {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* Project Specs */
+.project-specs {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.project-specs h4 {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.project-specs ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.9rem;
+}
+
+.project-specs li {
+    color: var(--text-secondary);
+    padding: 4px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.project-specs li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Tech Tags */
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tech-tag {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Project Links */
+.project-links {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    flex: 1;
+    justify-content: center;
+}
+
+.link-github {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.link-github:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+.link-demo {
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+}
+
+.link-demo:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Call to Action */
+.projects-cta {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow);
+    margin-top: 40px;
+}
+
+.projects-cta h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.projects-cta p {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: var(--nav-height);
+        flex-direction: column;
+        background-color: var(--bg-primary);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px var(--shadow);
+        padding: 20px 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        margin-top: 10px;
+        display: none;
+    }
+
+    .nav-dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .theme-toggle {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-header h1 {
+        font-size: 2rem;
+    }
+
+    .project-links {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-header h1 {
+        font-size: 1.75rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">RSK</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#education" class="nav-link">Education</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link active">Projects ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="school-projects.html">School Projects</a></li>
+                        <li><a href="homelab-projects.html">Homelab Projects</a></li>
+                    </ul>
+                </li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Projects Page -->
+    <div class="projects-page">
+        <div class="projects-container">
+            <!-- Page Header -->
+            <div class="projects-header">
+                <span class="homelab-badge">🏠 Personal Infrastructure</span>
+                <h1>Homelab Projects</h1>
+                <p>Hands-on experimentation with enterprise technologies, virtualization, and network infrastructure in my personal lab environment</p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                
+                <!-- PROJECT 1 - CUSTOMIZE THIS -->
+                <div class="project-card">
+                    <div class="project-image">
+                        🖥️
+                        <span class="status-badge status-active">● Active</span>
+                        <!-- REPLACE THIS: Add your project screenshot
+                        <img src="images/proxmox-cluster.jpg" alt="Proxmox Cluster">
+                        -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Proxmox Virtualization Cluster</h3>
+                        <p class="project-description">
+                            Built a multi-node Proxmox VE cluster for running virtual machines and containers. Configured shared storage, high availability, and automated backups for a production-like environment.
+                        </p>
+                        <div class="project-specs">
+                            <h4>Infrastructure Specs:</h4>
+                            <ul>
+                                <li>3-node Proxmox cluster</li>
+                                <li>Shared ZFS storage pool</li>
+                                <li>HA-enabled critical VMs</li>
+                                <li>Automated backup system</li>
+                            </ul>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Proxmox</span>
+                            <span class="tech-tag">ZFS</span>
+                            <span class="tech-tag">Linux</span>
+                            <span class="tech-tag">Virtualization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/project-name" class="project-link link-github" target="_blank">
+                                💻 GitHub
+                            </a>
+                            <a href="#" class="project-link link-demo">
+                                📖 Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2 - CUSTOMIZE THIS -->
+                <div class="project-card">
+                    <div class="project-image">
+                        🌐
+                        <span class="status-badge status-active">● Active</span>
+                        <!-- REPLACE THIS: Add your project screenshot
+                        <img src="images/pfsense-router.jpg" alt="pfSense Router">
+                        -->
+                    </div>
+                    <div class="project-content">
+                        <h3>pfSense Network Security Gateway</h3>
+                        <p class="project-description">
+                            Deployed pfSense as the main firewall and router for my homelab. Configured VLANs, VPN access, intrusion detection/prevention, and comprehensive network monitoring for secure segmentation.
+                        </p>
+                        <div class="project-specs">
+                            <h4>Network Features:</h4>
+                            <ul>
+                                <li>Multi-VLAN segmentation</li>
+                                <li>WireGuard VPN server</li>
+                                <li>Snort IDS/IPS</li>
+                                <li>pfBlockerNG ad blocking</li>
+                            </ul>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">pfSense</span>
+                            <span class="tech-tag">Firewall</span>
+                            <span class="tech-tag">VPN</span>
+                            <span class="tech-tag">IDS/IPS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/project-name" class="project-link link-github" target="_blank">
+                                💻 GitHub
+                            </a>
+                            <a href="#" class="project-link link-demo">
+                                🔧 Config Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3 - CUSTOMIZE THIS -->
+                <div class="project-card">
+                    <div class="project-image">
+                        📊
+                        <span class="status-badge status-progress">● In Progress</span>
+                        <!-- REPLACE THIS: Add your project screenshot
+                        <img src="images/monitoring-stack.jpg" alt="Monitoring Stack">
+                        -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Unified Monitoring Stack</h3>
+                        <p class="project-description">
+                            Implementing comprehensive monitoring and observability using Prometheus, Grafana, and ELK stack. Collecting metrics, logs, and traces from all homelab infrastructure for centralized visibility.
+                        </p>
+                        <div class="project-specs">
+                            <h4>Monitoring Components:</h4>
+                            <ul>
+                                <li>Prometheus metrics collection</li>
+                                <li>Grafana dashboards</li>
+                                <li>Elasticsearch log aggregation</li>
+                                <li>Alert management system</li>
+                            </ul>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Prometheus</span>
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">ELK Stack</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/project-name" class="project-link link-github" target="_blank">
+                                💻 GitHub
+                            </a>
+                            <a href="#" class="project-link link-demo">
+                                📈 Dashboards
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 4 - CUSTOMIZE THIS -->
+                <div class="project-card">
+                    <div class="project-image">
+                        🔐
+                        <span class="status-badge status-active">● Active</span>
+                        <!-- REPLACE THIS: Add your project screenshot
+                        <img src="images/active-directory.jpg" alt="Active Directory Lab">
+                        -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Windows Active Directory Lab</h3>
+                        <p class="project-description">
+                            Created a complete Windows Server environment simulating an enterprise Active Directory infrastructure. Includes domain controllers, file servers, group policies, and centralized authentication.
+                        </p>
+                        <div class="project-specs">
+                            <h4>Lab Environment:</h4>
+                            <ul>
+                                <li>2 Domain Controllers (HA)</li>
+                                <li>Windows Server 2022</li>
+                                <li>Group Policy management</li>
+                                <li>Certificate Services (PKI)</li>
+                            </ul>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Active Directory</span>
+                            <span class="tech-tag">Windows Server</span>
+                            <span class="tech-tag">GPO</span>
+                            <span class="tech-tag">PKI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/project-name" class="project-link link-github" target="_blank">
+                                💻 GitHub
+                            </a>
+                            <a href="#" class="project-link link-demo">
+                                📋 Lab Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Call to Action -->
+            <div class="projects-cta">
+                <h2>Interested in my academic work?</h2>
+                <p>Check out my coursework projects from DeVry University's Cloud Computing and Cybersecurity programs</p>
+                <a href="school-projects.html" class="btn btn-primary">View School Projects →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Dark Mode Toggle */
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        /* Mobile Navigation */
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        /* Mobile Dropdown */
+        const navDropdown = document.querySelector('.nav-dropdown');
+        if (navDropdown) {
+            navDropdown.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    navDropdown.classList.toggle('active');
+                }
+            });
+        }
+
+        /* Scroll Animation for Project Cards */
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
