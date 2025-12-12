@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Ryan Scott Kim</title>
+    <style>
+/* ============================================
+   RESUME PAGE STYLES
+   ============================================ */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #dbeafe;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --border-color: #e5e7eb;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(37, 99, 235, 0.2);
+    --nav-height: 70px;
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --primary-color: #3b82f6;
+    --primary-hover: #60a5fa;
+    --primary-light: #1e3a8a;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    --border-color: #4b5563;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(59, 130, 246, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navigation - Same as main page */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background-color: var(--bg-primary);
+    box-shadow: 0 2px 10px var(--shadow);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-logo:hover {
+    color: var(--primary-hover);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-primary);
+    box-shadow: 0 4px 12px var(--shadow);
+    border-radius: 8px;
+    list-style: none;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    margin-top: 10px;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 20px;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+.sun-icon,
+.moon-icon {
+    position: absolute;
+    transition: var(--transition);
+}
+
+[data-theme="light"] .moon-icon,
+[data-theme="dark"] .sun-icon {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+[data-theme="light"] .sun-icon,
+[data-theme="dark"] .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition: var(--transition);
+}
+
+/* Resume Page Specific Styles */
+.resume-page {
+    padding-top: calc(var(--nav-height) + 40px);
+    min-height: 100vh;
+    background-color: var(--bg-secondary);
+}
+
+.resume-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.resume-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.resume-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.resume-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Resume Content */
+.resume-content {
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    padding: 50px;
+    box-shadow: 0 4px 20px var(--shadow);
+    margin-bottom: 40px;
+}
+
+.resume-section {
+    margin-bottom: 40px;
+}
+
+.resume-section:last-child {
+    margin-bottom: 0;
+}
+
+.resume-section h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.resume-contact {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.resume-contact p {
+    color: var(--text-secondary);
+    margin: 5px 0;
+}
+
+.resume-contact a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.resume-contact a:hover {
+    text-decoration: underline;
+}
+
+.resume-summary {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-category h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skill-category li {
+    color: var(--text-secondary);
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.skill-category li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Experience Items */
+.experience-item,
+.education-item {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.experience-item:last-child,
+.education-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.experience-header,
+.education-header {
+    margin-bottom: 15px;
+}
+
+.experience-header h3,
+.education-header h3 {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.experience-title,
+.education-program {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.experience-date,
+.education-date {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.experience-item ul,
+.education-item ul {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.experience-item li,
+.education-item li {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Strengths List */
+.strengths-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.strengths-list li {
+    color: var(--text-secondary);
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.strengths-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.strengths-list strong {
+    color: var(--text-primary);
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .resume-actions,
+    .theme-toggle {
+        display: none;
+    }
+
+    .resume-page {
+        padding-top: 0;
+    }
+
+    .resume-content {
+        box-shadow: none;
+        padding: 20px;
+    }
+
+    body {
+        background-color: white;
+        color: black;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: var(--nav-height);
+        flex-direction: column;
+        background-color: var(--bg-primary);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px var(--shadow);
+        padding: 20px 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .nav-dropdown .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        margin-top: 10px;
+        display: none;
+    }
+
+    .nav-dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .theme-toggle {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .resume-content {
+        padding: 30px 20px;
+    }
+
+    .resume-header h1 {
+        font-size: 2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">RSK</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#education" class="nav-link">Education</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link">Projects ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="school-projects.html">School Projects</a></li>
+                        <li><a href="homelab-projects.html">Homelab Projects</a></li>
+                    </ul>
+                </li>
+                <li><a href="resume.html" class="nav-link active">Resume</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Resume Page -->
+    <div class="resume-page">
+        <div class="resume-container">
+            <!-- Resume Header -->
+            <div class="resume-header">
+                <h1>Resume / CV</h1>
+                <div class="resume-actions">
+                    <a href="#" class="btn btn-primary" onclick="window.print(); return false;">
+                        📄 Download PDF
+                    </a>
+                    <a href="index.html#contact" class="btn btn-secondary">
+                        ✉️ Contact Me
+                    </a>
+                </div>
+                <p style="margin-top: 20px; color: var(--text-secondary); font-size: 0.9rem;">
+                    💡 Tip: Use your browser's "Print to PDF" function to save this resume
+                </p>
+            </div>
+
+            <!-- Resume Content -->
+            <div class="resume-content">
+                <!-- Contact Information -->
+                <div class="resume-contact">
+                    <h1 style="color: var(--text-primary); margin-bottom: 10px;">Ryan Scott Kim</h1>
+                    <p>98-928 Noelani Street Apt. A, Pearl City, HI 96782</p>
+                    <p>(808) 384-7637 | <a href="mailto:ryanscottkim@outlook.com">ryanscottkim@outlook.com</a></p>
+                    <p><a href="https://www.linkedin.com/in/ryan-kim-6095a4279/" target="_blank">LinkedIn Profile</a></p>
+                </div>
+
+                <!-- Professional Summary -->
+                <div class="resume-section">
+                    <h2>Professional Summary</h2>
+                    <p class="resume-summary">
+                        Certified Cloud Computing and Cybersecurity professional with over 25 years of hands-on experience in automotive systems, logistics, and public service. Strong foundations in cloud computing, cybersecurity, and system troubleshooting through recent DeVry University certifications. Experienced in providing technical assistance to 25+ users in a government environment, including hardware/software installation, user training, and compliance documentation. Skilled at diagnosing issues, maintaining secure access to databases, and supporting daily operations with minimal downtime. Known for adaptability, clear communication, and a proven ability to transfer problem-solving skills from automotive and public service roles into IT support. Seeking to contribute to organizations by delivering reliable, user-focused technical support and asset management.
+                    </p>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="resume-section">
+                    <h2>Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Infrastructure & Systems</h3>
+                            <ul>
+                                <li>PC Hardware & Software Support</li>
+                                <li>Windows & Linux Operating Systems</li>
+                                <li>Virtualization: VMware, VirtualBox, Proxmox</li>
+                                <li>IT Asset Management</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Cloud & Security</h3>
+                            <ul>
+                                <li>AWS & Azure (IAM, EC2)</li>
+                                <li>Threat Detection & Incident Response</li>
+                                <li>Network Security Fundamentals</li>
+                                <li>Wireshark & Splunk</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Networking & Tools</h3>
+                            <ul>
+                                <li>TCP/IP, DNS, Firewalls, VPNs</li>
+                                <li>Microsoft Office Suite</li>
+                                <li>User Training & Support</li>
+                                <li>Compliance Documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transferable Skills -->
+                <div class="resume-section">
+                    <h2>Transferable Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <ul>
+                                <li>Troubleshooting & Diagnostics</li>
+                                <li>Inventory & Workflow Management</li>
+                                <li>Regulatory Compliance & Data Accuracy</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <ul>
+                                <li>Customer Service & Communication</li>
+                                <li>Adaptability & Continuous Learning</li>
+                                <li>Team Collaboration & Project Coordination</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relevant Experience -->
+                <div class="resume-section">
+                    <h2>Relevant Experience</h2>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>MVR Clerk II</h3>
+                            <p class="experience-title">Department of Customer Services, Honolulu, HI</p>
+                            <p class="experience-date">December 2014 - Present</p>
+                        </div>
+                        <ul>
+                            <li>Provide technical assistance and support to 25+ DMV staff across multiple sections, both in-person and over the phone</li>
+                            <li>Assemble, install, configure, and troubleshoot PCs, printers, and peripheral equipment to ensure operational continuity</li>
+                            <li>Maintain secure access to motor vehicle databases, adhering to state/city regulations and data privacy standards</li>
+                            <li>Collaborate with IT teams and external vendors to resolve system errors and implement process improvements</li>
+                            <li>Manage IT assets and inventory, including procurement and invoice processing for hardware/software</li>
+                            <li>Deliver user training and guidance on system updates, compliance procedures, and application use</li>
+                            <li>Document technical issues and resolutions to support knowledge sharing and reproducible troubleshooting</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>Cashier / Technical Support Assistant</h3>
+                            <p class="experience-title">Department of Customer Services, Honolulu, HI</p>
+                            <p class="experience-date">2000 - 2014</p>
+                        </div>
+                        <ul>
+                            <li>Supported batch processing systems and assisted with troubleshooting software errors</li>
+                            <li>Maintained accurate records and ensured compliance with financial and IT protocols</li>
+                            <li>Provided customer service and technical guidance to staff and the public</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3>Automotive Technician / Stockperson</h3>
+                            <p class="experience-title">Various Employers, Honolulu, HI</p>
+                            <p class="experience-date">1990 - 2000</p>
+                        </div>
+                        <ul>
+                            <li>Diagnosed and repaired complex mechanical/electrical systems, developing strong troubleshooting and diagnostic skills</li>
+                            <li>Managed inventory, workflow coordination, and compliance with safety standards</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="resume-section">
+                    <h2>Education</h2>
+                    
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3>DeVry University</h3>
+                            <p class="education-program">Certificate in Cloud Computing (with honors)</p>
+                            <p class="education-date">March 2025</p>
+                        </div>
+                        <ul>
+                            <li>Focused on cloud infrastructure, IAM configuration, network security, threat detection, and incident response</li>
+                            <li>Completed hands-on labs using AWS, Azure, Wireshark, and Splunk</li>
+                        </ul>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3>DeVry University</h3>
+                            <p class="education-program">Certificate in Cybersecurity (with honors)</p>
+                            <p class="education-date">October 2025</p>
+                        </div>
+                        <ul>
+                            <li>Focused on cloud infrastructure, IAM configuration, network security, threat detection, and incident response</li>
+                            <li>Completed hands-on labs using AWS, Azure, Wireshark, and Splunk</li>
+                        </ul>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3>New York Technical Institute</h3>
+                            <p class="education-program">Certificate in General Mechanics</p>
+                            <p class="education-date">July 1988</p>
+                        </div>
+                        <ul>
+                            <li>Specialized in automotive systems diagnostics and repair</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Key Strengths -->
+                <div class="resume-section">
+                    <h2>Key Strengths</h2>
+                    <ul class="strengths-list">
+                        <li><strong>Technical troubleshooting:</strong> Diagnosing and resolving hardware/software issues quickly and effectively</li>
+                        <li><strong>User support & training:</strong> Providing clear instructions and mentoring staff on IT systems</li>
+                        <li><strong>Asset management:</strong> Tracking, purchasing, and maintaining IT equipment and records</li>
+                        <li><strong>Compliance & documentation:</strong> Ensuring secure, accurate, and regulatory-compliant IT operations</li>
+                        <li><strong>Adaptability:</strong> Transitioning skills from mechanics and public service into IT environments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Dark Mode Toggle */
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        /* Mobile Navigation */
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        /* Mobile Dropdown */
+        const navDropdown = document.querySelector('.nav-dropdown');
+        if (navDropdown) {
+            navDropdown.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    navDropdown.classList.toggle('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
