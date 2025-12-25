@@ -1,0 +1,85 @@
+<div class="project">
+  <h2>Proxmox Virtualization Cluster</h2>
+
+  <p>
+    This project began as a personal challenge to deepen my understanding of virtualization and build a realistic,
+    multi-node environment using Proxmox. Instead of relying on a single server, I designed a full cluster to learn
+    how distributed systems behave, how nodes communicate, and how backups integrate into a larger infrastructure.
+  </p>
+
+  <p>
+    The setup includes three mini PCs configured as Proxmox cluster nodes and a fourth mini PC dedicated as a
+    Proxmox Backup Server. This architecture mirrors production-style environments and gave me hands-on experience
+    with clustering, quorum, storage configuration, and centralized backup workflows.
+  </p>
+
+  <p>
+    The most valuable part of this project was the troubleshooting process. Throughout the build, I encountered
+    configuration issues that required researching community forums, reading GitHub documentation, and using AI tools
+    to interpret logs and errors. Each issue became an opportunity to strengthen my diagnostic skills and understand
+    the underlying mechanics of Proxmox.
+  </p>
+
+  <p>
+    The final result is a fully functional, stable Proxmox cluster with a dedicated backup server. It now serves as
+    the backbone of my homelab, providing a reliable platform for future virtual machines, containers, and experiments.
+    More importantly, it reflects my persistence, resourcefulness, and commitment to continuous learning.
+  </p>
+
+  <!-- Image Inserted Here -->
+  <div class="project-image">
+    <img src="proxmox_cluster.png" alt="Proxmox Cluster Diagram" style="max-width:100%; height:auto; margin: 20px 0;">
+  </div>
+
+  <h3>Technical Architecture Overview</h3>
+  <ul>
+    <li><strong>Three-node Proxmox VE cluster</strong> forming a quorum-based virtualization environment</li>
+    <li><strong>One Proxmox Backup Server (PBS)</strong> providing centralized backup and snapshot retention</li>
+    <li><strong>All nodes connected through a dedicated LAN</strong> via a central network switch</li>
+    <li><strong>Local storage on each node</strong> with optional replication and scheduled backups</li>
+  </ul>
+
+  <h3>Compute Nodes (Proxmox VE Hosts)</h3>
+  <ul>
+    <li><strong>Node 1:</strong> Runs VMs and containers, participates in quorum, local SSD storage, corosync cluster services</li>
+    <li><strong>Node 2:</strong> Additional compute capacity, supports live migration, synchronized cluster configuration</li>
+    <li><strong>Node 3:</strong> Third quorum member, ensures cluster stability, hosts workloads and HA logic</li>
+  </ul>
+
+  <h3>Proxmox Backup Server (PBS)</h3>
+  <ul>
+    <li><strong>Dedicated mini PC</strong> running Proxmox Backup Server</li>
+    <li><strong>Receives scheduled backups</strong> from all three Proxmox nodes</li>
+    <li><strong>Stores VM and container backups</strong> with deduplication and incremental snapshots</li>
+    <li><strong>Connected to LAN</strong> for fast backup and restore operations</li>
+  </ul>
+
+  <h3>Networking Layer</h3>
+  <ul>
+    <li><strong>Central network switch</strong> connecting all four mini PCs</li>
+    <li><strong>Handles cluster communication</strong> (corosync), management traffic, and backup traffic</li>
+    <li><strong>Optional VLAN segmentation</strong> for management, VM networks, and backup isolation</li>
+  </ul>
+
+  <h3>Storage Architecture</h3>
+  <ul>
+    <li><strong>Local SSD storage</strong> on each Proxmox node for VM disks</li>
+    <li><strong>PBS datastore</strong> for snapshots, backups, and retention policies</li>
+    <li><strong>Optional ZFS</strong> for redundancy and replication jobs</li>
+  </ul>
+
+  <h3>Management & Access</h3>
+  <ul>
+    <li><strong>Proxmox Web UI</strong> accessible from any node</li>
+    <li><strong>SSH access</strong> for troubleshooting and configuration</li>
+    <li><strong>PBS Web UI</strong> for backup management and restore operations</li>
+    <li><strong>Cluster configuration synchronized</strong> automatically across all nodes</li>
+  </ul>
+
+  <p>
+    This architecture reflects a production-style virtualization environment built entirely within my personal homelab.
+    It demonstrates my ability to design distributed systems, troubleshoot complex configuration issues, and build
+    reliable infrastructure using open-source tools and hands-on experimentation.
+  </p>
+</div>
+
