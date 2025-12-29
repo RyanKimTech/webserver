@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>pfSense Network Security Gateway | Ryan Scott Kim</title>
+  <title>MagicMirror² Smart Display & MMM-RandomSlideshow Module | Ryan Scott Kim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -47,13 +47,6 @@
       font-size: 1.25rem;
       margin-top: 32px;
       margin-bottom: 8px;
-      color: #111827;
-    }
-
-    h3 {
-      margin-top: 20px;
-      margin-bottom: 6px;
-      font-size: 1.1rem;
       color: #111827;
     }
 
@@ -136,42 +129,89 @@
   <div class="page-wrapper">
 
     <header>
-      <p class="subtitle">Firewall • VLAN Segmentation • VPN • IDS</p>
-      <h1>pfSense Network Security Gateway</h1>
+      <p class="subtitle">Smart Display • Frontend Engineering • Open Source</p>
+      <h1>Building a Custom MagicMirror² Display and Publishing an Open‑Source Slideshow Module</h1>
       <p class="meta">By Ryan Scott Kim</p>
     </header>
 
     <section>
       <h2>Overview</h2>
       <p>
-        This project turns a small Intel NUCbox into a dedicated pfSense-based network security gateway for my homelab.
-        Instead of relying on a consumer router, I wanted full control over routing, firewall policies, and network
-        segmentation so I could treat my home environment as a security lab. Running pfSense on bare metal gives me a
-        realistic platform to practice designing VLANs, hardening remote access, and working with intrusion detection
-        tools without impacting the reliability of my virtualization stack.
+        I designed and built a wall-mounted MagicMirror² smart display and developed a custom slideshow module to address
+        limitations in existing solutions. The project combined hardware integration, frontend development, and open-source
+        contribution — resulting in a polished, reliable display and a publicly available module now used by others.
       </p>
       <p>
-        The gateway sits at the edge of my lab, handling WAN connectivity, per-VLAN firewalling, WireGuard VPN access,
-        and integration with monitoring tools like NetAlertX. It also isolates higher-risk devices (like IoT) from my
-        main workstation and Proxmox environment while still allowing controlled access where needed.
+        I built this module because none of the existing slideshow options offered what I needed: a clean, centered photo
+        display instead of a full‑screen background slideshow.
       </p>
     </section>
 
     <section>
-      <h2>Why pfSense and design choices</h2>
-      <p>
-        I chose pfSense because I wanted to move beyond the limitations of a consumer router and learn how to configure
-        a real firewall platform. pfSense provides fine-grained control over routing and firewall rules, strong VPN support,
-        and an active community with extensive documentation. It’s a great balance between enterprise-style features and
-        something I can run and experiment with in a homelab.
-      </p>
-      <p>
-        I deliberately run pfSense on bare metal instead of virtualizing it on Proxmox. Passing through network adapters
-        in Proxmox adds complexity and potential failure modes, and I wanted my security perimeter to remain decoupled
-        from my virtualization infrastructure. If the Proxmox cluster goes down for maintenance or testing, the network
-        gateway and VPN access remain stable and available.
-      </p>
+      <h2>Key Objectives</h2>
+      <ul>
+        <li><strong>Create a stable MagicMirror² display:</strong> Built using a Raspberry Pi and a 24" monitor.</li>
+        <li><strong>Develop a custom slideshow module:</strong> Added smooth transitions and predictable sizing.</li>
+        <li><strong>Improve user experience:</strong> Resolved layout, timing, and shuffle issues present in existing modules.</li>
+        <li><strong>Open‑source contribution:</strong> Published the module with clear documentation and installation steps.</li>
+      </ul>
     </section>
 
     <section>
+      <h2>Technical Highlights</h2>
+      <ul>
+        <li><strong>Frontend engineering:</strong> Implemented a dual-image crossfade system using CSS transitions and absolute positioning.</li>
+        <li><strong>DOM timing control:</strong> Ensured stable rendering by managing asynchronous loading and applying CSS after DOM creation.</li>
+        <li><strong>Shuffle logic:</strong> Built a non‑repeating randomization algorithm for a better viewing experience.</li>
+        <li><strong>Layout stability:</strong> Overrode MagicMirror’s auto-sizing behavior with fixed-size containers and targeted CSS.</li>
+        <li><strong>Hardware integration:</strong> Mounted and configured a Raspberry Pi–powered display with automated power scheduling.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Impact</h2>
+      <ul>
+        <li><strong>Improved reliability:</strong> Eliminated layout drift and inconsistent transitions.</li>
+        <li><strong>Enhanced visual quality:</strong> Delivered smooth crossfades and correct image orientation.</li>
+        <li><strong>Better user control:</strong> Added configuration options for timing, sizing, and shuffle behavior.</li>
+        <li><strong>Open‑source contribution:</strong> Released a fully documented module for the MagicMirror community.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Skills Demonstrated</h2>
+      <ul>
+        <li><strong>JavaScript module development</strong></li>
+        <li><strong>CSS animation and layout control</strong></li>
+        <li><strong>Debugging asynchronous rendering</strong></li>
+        <li><strong>Hardware/software integration</strong></li>
+        <li><strong>Technical documentation for public release</strong></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Outcome</h2>
+      <p>
+        The final MagicMirror setup runs smoothly with predictable behavior, clean transitions, and a professional appearance.
+        The module, <strong>MMM‑RandomSlideshow</strong>, is available on GitHub and designed for easy installation,
+        configuration, and community contribution.
+      </p>
+      <p>
+        GitHub Repository:
+        <a href="https://github.com/RyanKimTech/MMM-RandomSlideshow" target="_blank" rel="noopener noreferrer">
+          https://github.com/RyanKimTech/MMM-RandomSlideshow
+        </a>
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="return-links">
+      <a href="index.html" class="btn-primary">← Back to Main Page</a>
+      <a href="homelab-projects.html" class="btn-primary">← Back to Homelab Projects</a>
+    </div>
+
+  </div>
+</body>
+</html>
 
