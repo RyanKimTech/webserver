@@ -1,91 +1,247 @@
-<div class="project">
-  <h2>Proxmox Virtualization Cluster</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Proxmox Virtualization Cluster | Ryan Scott Kim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <p>
-    This project began as a personal challenge to deepen my understanding of virtualization and build a realistic,
-    multi-node environment using Proxmox. Instead of relying on a single server, I designed a full cluster to learn
-    how distributed systems behave, how nodes communicate, and how backups integrate into a larger infrastructure.
-  </p>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+      color: #111827;
+    }
 
-  <p>
-    The setup includes three mini PCs configured as Proxmox cluster nodes and a fourth mini PC dedicated as a
-    Proxmox Backup Server. This architecture mirrors production-style environments and gave me hands-on experience
-    with clustering, quorum, storage configuration, and centralized backup workflows.
-  </p>
+    .page-wrapper {
+      max-width: 800px;
+      margin: 40px auto 60px;
+      padding: 0 16px;
+    }
 
-  <p>
-    The most valuable part of this project was the troubleshooting process. Throughout the build, I encountered
-    configuration issues that required researching community forums, reading GitHub documentation, and using AI tools
-    to interpret logs and errors. Each issue became an opportunity to strengthen my diagnostic skills and understand
-    the underlying mechanics of Proxmox.
-  </p>
+    header {
+      margin-bottom: 32px;
+      text-align: left;
+    }
 
-  <p>
-    The final result is a fully functional, stable Proxmox cluster with a dedicated backup server. It now serves as
-    the backbone of my homelab, providing a reliable platform for future virtual machines, containers, and experiments.
-    More importantly, it reflects my persistence, resourcefulness, and commitment to continuous learning.
-  </p>
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #111827;
+    }
 
-  <!-- Image Inserted Here -->
-  <div class="project-image">
-    <img src="proxmox_cluster.png" alt="Proxmox Cluster Diagram" style="max-width:100%; height:auto; margin: 20px 0;">
+    .subtitle {
+      font-size: 0.95rem;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    h3 {
+      margin-top: 24px;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+      color: #111827;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #111827;
+    }
+
+    ul {
+      margin: 0 0 16px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section-divider {
+      margin: 32px 0;
+      border: none;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .return-links {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .page-wrapper {
+        margin-top: 24px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+
+    <header>
+      <p class="subtitle">Virtualization • Clustering • Backup Architecture</p>
+      <h1>Proxmox Virtualization Cluster</h1>
+      <p class="meta">By Ryan Scott Kim</p>
+    </header>
+
+    <section>
+      <h2>Overview</h2>
+      <p>
+        This project began as a personal challenge to deepen my understanding of virtualization and build a realistic,
+        multi-node environment using Proxmox. Instead of relying on a single server, I designed a full cluster to learn
+        how distributed systems behave, how nodes communicate, and how backups integrate into a larger infrastructure.
+      </p>
+      <p>
+        The setup includes three mini PCs configured as Proxmox cluster nodes and a fourth mini PC dedicated as a
+        Proxmox Backup Server. This architecture mirrors production-style environments and gave me hands-on experience
+        with clustering, quorum, storage configuration, and centralized backup workflows.
+      </p>
+      <p>
+        The most valuable part of this project was the troubleshooting process. Throughout the build, I encountered
+        configuration issues that required researching community forums, reading GitHub documentation, and using AI tools
+        to interpret logs and errors. Each issue became an opportunity to strengthen my diagnostic skills and understand
+        the underlying mechanics of Proxmox.
+      </p>
+      <p>
+        The final result is a fully functional, stable Proxmox cluster with a dedicated backup server. It now serves as
+        the backbone of my homelab, providing a reliable platform for future virtual machines, containers, and experiments.
+        More importantly, it reflects my persistence, resourcefulness, and commitment to continuous learning.
+      </p>
+    </section>
+
+    <section>
+      <img src="proxmox_cluster.png" alt="Proxmox Cluster Diagram" style="max-width:100%; height:auto; margin: 20px 0;">
+    </section>
+
+    <section>
+      <h2>Technical Architecture Overview</h2>
+      <ul>
+        <li><strong>Three-node Proxmox VE cluster</strong> forming a quorum-based virtualization environment</li>
+        <li><strong>One Proxmox Backup Server (PBS)</strong> providing centralized backup and snapshot retention</li>
+        <li><strong>All nodes connected through a dedicated LAN</strong> via a central network switch</li>
+        <li><strong>Local storage on each node</strong> with optional replication and scheduled backups</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Compute Nodes (Proxmox VE Hosts)</h2>
+      <ul>
+        <li><strong>Node 1:</strong> Runs VMs and containers, participates in quorum, local SSD storage, corosync cluster services</li>
+        <li><strong>Node 2:</strong> Additional compute capacity, supports live migration, synchronized cluster configuration</li>
+        <li><strong>Node 3:</strong> Third quorum member, ensures cluster stability, hosts workloads and HA logic</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Proxmox Backup Server (PBS)</h2>
+      <ul>
+        <li><strong>Dedicated mini PC</strong> running Proxmox Backup Server</li>
+        <li><strong>Receives scheduled backups</strong> from all three Proxmox nodes</li>
+        <li><strong>Stores VM and container backups</strong> with deduplication and incremental snapshots</li>
+        <li><strong>Connected to LAN</strong> for fast backup and restore operations</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Networking Layer</h2>
+      <ul>
+        <li><strong>Central network switch</strong> connecting all four mini PCs</li>
+        <li><strong>Handles cluster communication</strong> (corosync), management traffic, and backup traffic</li>
+        <li><strong>Optional VLAN segmentation</strong> for management, VM networks, and backup isolation</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Storage Architecture</h2>
+      <ul>
+        <li><strong>Local SSD storage</strong> on each Proxmox node for VM disks</li>
+        <li><strong>PBS datastore</strong> for snapshots, backups, and retention policies</li>
+        <li><strong>Optional ZFS</strong> for redundancy and replication jobs</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Management & Access</h2>
+      <ul>
+        <li><strong>Proxmox Web UI</strong> accessible from any node</li>
+        <li><strong>SSH access</strong> for troubleshooting and configuration</li>
+        <li><strong>PBS Web UI</strong> for backup management and restore operations</li>
+        <li><strong>Cluster configuration synchronized</strong> automatically across all nodes</li>
+      </ul>
+    </section>
+
+    <section>
+      <p>
+        This architecture reflects a production-style virtualization environment built entirely within my personal homelab.
+        It demonstrates my ability to design distributed systems, troubleshoot complex configuration issues, and build
+        reliable infrastructure using open-source tools and hands-on experimentation.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="return-links">
+      <a href="index.html" class="btn-primary">← Back to Main Page</a>
+      <a href="homelab-projects.html" class="btn-primary">← Back to Homelab Projects</a>
+    </div>
+
   </div>
-
-  <h3>Technical Architecture Overview</h3>
-  <ul>
-    <li><strong>Three-node Proxmox VE cluster</strong> forming a quorum-based virtualization environment</li>
-    <li><strong>One Proxmox Backup Server (PBS)</strong> providing centralized backup and snapshot retention</li>
-    <li><strong>All nodes connected through a dedicated LAN</strong> via a central network switch</li>
-    <li><strong>Local storage on each node</strong> with optional replication and scheduled backups</li>
-  </ul>
-
-  <h3>Compute Nodes (Proxmox VE Hosts)</h3>
-  <ul>
-    <li><strong>Node 1:</strong> Runs VMs and containers, participates in quorum, local SSD storage, corosync cluster services</li>
-    <li><strong>Node 2:</strong> Additional compute capacity, supports live migration, synchronized cluster configuration</li>
-    <li><strong>Node 3:</strong> Third quorum member, ensures cluster stability, hosts workloads and HA logic</li>
-  </ul>
-
-  <h3>Proxmox Backup Server (PBS)</h3>
-  <ul>
-    <li><strong>Dedicated mini PC</strong> running Proxmox Backup Server</li>
-    <li><strong>Receives scheduled backups</strong> from all three Proxmox nodes</li>
-    <li><strong>Stores VM and container backups</strong> with deduplication and incremental snapshots</li>
-    <li><strong>Connected to LAN</strong> for fast backup and restore operations</li>
-  </ul>
-
-  <h3>Networking Layer</h3>
-  <ul>
-    <li><strong>Central network switch</strong> connecting all four mini PCs</li>
-    <li><strong>Handles cluster communication</strong> (corosync), management traffic, and backup traffic</li>
-    <li><strong>Optional VLAN segmentation</strong> for management, VM networks, and backup isolation</li>
-  </ul>
-
-  <h3>Storage Architecture</h3>
-  <ul>
-    <li><strong>Local SSD storage</strong> on each Proxmox node for VM disks</li>
-    <li><strong>PBS datastore</strong> for snapshots, backups, and retention policies</li>
-    <li><strong>Optional ZFS</strong> for redundancy and replication jobs</li>
-  </ul>
-
-  <h3>Management & Access</h3>
-  <ul>
-    <li><strong>Proxmox Web UI</strong> accessible from any node</li>
-    <li><strong>SSH access</strong> for troubleshooting and configuration</li>
-    <li><strong>PBS Web UI</strong> for backup management and restore operations</li>
-    <li><strong>Cluster configuration synchronized</strong> automatically across all nodes</li>
-  </ul>
-
-  <p>
-    This architecture reflects a production-style virtualization environment built entirely within my personal homelab.
-    It demonstrates my ability to design distributed systems, troubleshoot complex configuration issues, and build
-    reliable infrastructure using open-source tools and hands-on experimentation.
-  </p>
-</div>
-
-<hr class="section-divider">
-
-<div class="return-links">
-    <a href="index.html" class="btn btn-outline">← Back to Main Page</a>
-    <a href="homelab-projects.html" class="btn btn-outline">← Back to Homelab Projects</a>
-</div>
+</body>
+</html>
