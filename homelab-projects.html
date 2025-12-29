@@ -297,6 +297,16 @@ body {
     object-fit: cover;
 }
 
+/* Override for logo images */
+.project-image .project-logo {
+    width: auto;
+    height: auto;
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: contain;
+    display: block;
+}
+
 /* Status Badge */
 .status-badge {
     position: absolute;
@@ -609,7 +619,7 @@ body {
                 <!-- PROXMOX VIRTUALIZATION CLUSTER PROJECT -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/proxmox_cluster.png" alt="Proxmox Virtualization Cluster">
+                        <img class="project-logo" src="Proxmox-logo.jpg" alt="Proxmox Logo">
                         <span class="status-badge status-active">● Active</span>
                     </div>
                     <div class="project-content">
@@ -633,8 +643,6 @@ body {
                             <span class="tech-tag">Virtualization</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/yourusername/proxmox-cluster" class="project-link link-github" target="_blank">
-                                💻 GitHub
                             </a>
                             <a href="proxmox_virt_project.html" class="project-link link-demo">
                                 📖 Details
@@ -646,7 +654,7 @@ body {
                 <!-- PROJECT 2 -->
                 <div class="project-card">
                     <div class="project-image">
-                        🌐
+                        <img class="project-logo" src="New-PfSense-Logo.jpg" alt="pfSense Logo">
                         <span class="status-badge status-active">● Active</span>
                     </div>
                     <div class="project-content">
@@ -670,8 +678,6 @@ body {
                             <span class="tech-tag">IDS/IPS</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/yourusername/project-name" class="project-link link-github" target="_blank">
-                                💻 GitHub
                             </a>
                              <a href="pfSense_Gateway.html" class="project-link link-demo">
                                 📖 Details
@@ -683,8 +689,8 @@ body {
                 <!-- PROJECT 3 - NetAlertX -->
                 <div class="project-card">
                     <div class="project-image">
-                        📊
-                        <span class="status-badge status-progress">● In Progress</span>
+                        <img class="project-logo" src="netalertx.jpg" alt="NetAlertX Logo">
+                        <span class="status-badge status-active">● Active</span>
                     </div>
                     <div class="project-content">
                         <h3>NetAlertX Monitoring Dashboard</h3>
@@ -707,21 +713,59 @@ body {
                             <span class="tech-tag">Alerts</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/yourusername/project-name" class="project-link link-github" target="_blank">
-                                💻 GitHub
                             </a>
                             <a href="#" class="project-link link-demo">
-                                📈 Dashboard
+                                📈 Details
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- PROJECT 4 -->
+               <!-- PROJECT 5 -->
+            <div class="project-card">
+            <div class="project-image">
+                <img class="project-logo" src="MagicMirror-logo.jpg" alt="MagicMirror Logo">
+                <span class="status-badge status-active">● Active</span>
+            </div>
+            <div class="project-content">
+                <h3>MagicMirror² Smart Display & Custom Slideshow Module</h3>
+                <p class="project-description">
+                    Built a wall-mounted MagicMirror² smart display and developed a custom slideshow module to solve layout and rendering limitations in existing solutions. The module delivers smooth crossfades, centered image rendering, and reliable shuffle logic.
+            </p>
+
+            <div class="project-specs">
+                <h4>Project Highlights:</h4>
+                <ul>
+                    <li>Custom MMM-RandomSlideshow module</li>
+                    <li>Smooth crossfade transitions</li>
+                    <li>Centered, fixed-size image rendering</li>
+                    <li>Non-repeating shuffle algorithm</li>
+                    <li>Mini Pc server smart display</li>
+            </ul>
+        </div>
+
+        <div class="project-tech">
+            <span class="tech-tag">MagicMirror²</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">Node.js</span>
+        </div>
+
+        <div class="project-links">
+            </a>
+            <a href="magicmirror_project.html" class="project-link link-demo">
+                📖 Details
+            </a>
+        </div>
+    </div>
+</div>
+
+
+                   <!-- PROJECT 5 -->
                 <div class="project-card">
                     <div class="project-image">
                         🔒
-                        <span class="status-badge status-active">● Active</span>
+                        <span class="status-badge status-progress">● In Progress</span>
                     </div>
                     <div class="project-content">
                         <h3>Windows Active Directory Lab</h3>
@@ -744,8 +788,6 @@ body {
                             <span class="tech-tag">PKI</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/yourusername/project-name" class="project-link link-github" target="_blank">
-                                💻 GitHub
                             </a>
                             <a href="#" class="project-link link-demo">
                                 📋 Lab Guide
