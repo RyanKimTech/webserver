@@ -1,171 +1,177 @@
-<main class="project-page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>pfSense Network Security Gateway | Ryan Scott Kim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Project header -->
-    <section class="projects-header">
-        <h1>pfSense Network Security Gateway</h1>
-        <p>
-            Building a dedicated network security gateway with pfSense to segment my homelab, practice security 
-            design, and gain hands-on experience with firewalling, VPNs, and IDS in a real environment.
-        </p>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .page-wrapper {
+      max-width: 800px;
+      margin: 40px auto 60px;
+      padding: 0 16px;
+    }
+
+    header {
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+      color: #111827;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #111827;
+    }
+
+    ul {
+      margin: 0 0 16px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section-divider {
+      margin: 32px 0;
+      border: none;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .return-links {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .page-wrapper {
+        margin-top: 24px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+
+    <header>
+      <p class="subtitle">Firewall • VLAN Segmentation • VPN • IDS</p>
+      <h1>pfSense Network Security Gateway</h1>
+      <p class="meta">By Ryan Scott Kim</p>
+    </header>
+
+    <section>
+      <h2>Overview</h2>
+      <p>
+        This project turns a small Intel NUCbox into a dedicated pfSense-based network security gateway for my homelab.
+        Instead of relying on a consumer router, I wanted full control over routing, firewall policies, and network
+        segmentation so I could treat my home environment as a security lab. Running pfSense on bare metal gives me a
+        realistic platform to practice designing VLANs, hardening remote access, and working with intrusion detection
+        tools without impacting the reliability of my virtualization stack.
+      </p>
+      <p>
+        The gateway sits at the edge of my lab, handling WAN connectivity, per-VLAN firewalling, WireGuard VPN access,
+        and integration with monitoring tools like NetAlertX. It also isolates higher-risk devices (like IoT) from my
+        main workstation and Proxmox environment while still allowing controlled access where needed.
+      </p>
     </section>
 
-    <!-- Project meta / tags -->
-    <section class="project-meta">
-        <div class="project-details">
-            <p><strong>Role:</strong> Homelab Architect, Network & Security Engineer</p>
-            <p><strong>Tech stack:</strong> pfSense, WireGuard, Snort (IDS), VLANs, NetAlertX, Pi-hole</p>
-            <p><strong>Hardware:</strong> Intel NUCbox (6th gen CPU, 8GB RAM), on-board NIC (WAN), USB NIC (LAN/VLANs)</p>
-        </div>
+    <section>
+      <h2>Why pfSense and design choices</h2>
+      <p>
+        I chose pfSense because I wanted to move beyond the limitations of a consumer router and learn how to configure
+        a real firewall platform. pfSense provides fine-grained control over routing and firewall rules, strong VPN support,
+        and an active community with extensive documentation. It’s a great balance between enterprise-style features and
+        something I can run and experiment with in a homelab.
+      </p>
+      <p>
+        I deliberately run pfSense on bare metal instead of virtualizing it on Proxmox. Passing through network adapters
+        in Proxmox adds complexity and potential failure modes, and I wanted my security perimeter to remain decoupled
+        from my virtualization infrastructure. If the Proxmox cluster goes down for maintenance or testing, the network
+        gateway and VPN access remain stable and available.
+      </p>
     </section>
 
-    <!-- Overview -->
-    <section class="project-section">
-        <h2>Overview</h2>
-        <p>
-            This project turns a small Intel NUCbox into a dedicated pfSense-based network security gateway for my homelab. 
-            Instead of relying on a consumer router, I wanted full control over routing, firewall policies, and network 
-            segmentation so I could treat my home environment as a security lab. Running pfSense on bare metal gives me a 
-            realistic platform to practice designing VLANs, hardening remote access, and working with intrusion detection 
-            tools without impacting the reliability of my virtualization stack.
-        </p>
-        <p>
-            The gateway sits at the edge of my lab, handling WAN connectivity, per-VLAN firewalling, WireGuard VPN access, 
-            and integration with monitoring tools like NetAlertX. It also isolates higher-risk devices (like IoT) from my 
-            main workstation and Proxmox environment while still allowing controlled access where needed.
-        </p>
-    </section>
+    <section>
 
-    <!-- Why pfSense and design choices -->
-    <section class="project-section">
-        <h2>Why pfSense and design choices</h2>
-        <p>
-            I chose pfSense because I wanted to move beyond the limitations of a consumer router and learn how to configure 
-            a real firewall platform. pfSense provides fine-grained control over routing and firewall rules, strong VPN support, 
-            and an active community with extensive documentation. It’s a great balance between enterprise-style features and 
-            something I can run and experiment with in a homelab.
-        </p>
-        <p>
-            I deliberately run pfSense on bare metal instead of virtualizing it on Proxmox. Passing through network adapters 
-            in Proxmox adds complexity and potential failure modes, and I wanted my security perimeter to remain decoupled 
-            from my virtualization infrastructure. If the Proxmox cluster goes down for maintenance or testing, the network 
-            gateway and VPN access remain stable and available.
-        </p>
-    </section>
-
-    <!-- Architecture / Network design -->
-    <section class="project-section">
-        <h2>Network architecture and segmentation</h2>
-        <p>
-            The pfSense gateway uses the NUCbox’s internal NIC for the WAN connection and a USB network adapter for the 
-            internal LAN and VLANs. From there, the network is segmented into separate broadcast domains to limit the 
-            blast radius of any compromised device and to create a realistic environment for practicing security controls.
-        </p>
-        <ul>
-            <li><strong>WAN:</strong> Internet-facing interface connected to the ISP modem/router.</li>
-            <li><strong>LAN VLAN:</strong> Primary VLAN for my main workstation and Proxmox environment.</li>
-            <li><strong>IoT VLAN:</strong> Isolated segment for higher-risk IoT devices that should not reach core systems.</li>
-            <li><strong>DMZ VLAN:</strong> Network zone for services that may need more exposure.</li>
-        </ul>
-        <p>
-            Proxmox and my main computer live on a dedicated VLAN, separate from IoT and DMZ devices. Inter-VLAN traffic is 
-            controlled by explicit firewall rules so that, for example, IoT devices cannot reach my workstation or hypervisor, 
-            but my admin devices can manage lab services when needed.
-        </p>
-        <p class="diagram-placeholder">
-            <em>Planned diagram: WAN → pfSense → VLANs for LAN, IoT, and DMZ, showing Proxmox and admin workstation on the LAN VLAN.</em>
-        </p>
-    </section>
-
-    <!-- Security controls -->
-    <section class="project-section">
-        <h2>Security controls and features</h2>
-
-        <h3>Firewall rules and segmentation</h3>
-        <p>
-            The core of this setup is strict segmentation between VLANs. IoT devices are denied direct access 
-            to the LAN by default, with only tightly scoped exceptions where necessary. The LAN VLAN has more 
-            permissive access out, but still passes through the pfSense firewall for logging and control.
-        </p>
-
-        <h3>WireGuard VPN for admin access</h3>
-        <p>
-            I use WireGuard in pfSense for admin-only remote access to the lab. The VPN is configured so that only my admin 
-            devices can connect, and they gain access to the VLANs needed to manage Proxmox and other core services.
-        </p>
-
-        <h3>Snort intrusion detection</h3>
-        <p>
-            Snort runs in IDS mode to provide network visibility and alerting without actively blocking traffic. 
-            I encountered false positives early on and tuned rule sets to reduce noise while keeping meaningful alerts.
-        </p>
-
-        <h3>DNS and ad blocking with Pi-hole</h3>
-        <p>
-            pfSense handles routing and firewalling while Pi-hole handles DNS filtering. This separation keeps the firewall 
-            focused on network-level controls while Pi-hole manages ad and tracker blocking.
-        </p>
-    </section>
-
-    <!-- Monitoring and observability -->
-    <section class="project-section">
-        <h2>Monitoring and observability</h2>
-        <p>
-            I integrated pfSense with NetAlertX to centralize monitoring of devices, network health, and key services. 
-            A custom dashboard helps me quickly spot issues, validate changes, and understand the impact of new rules.
-        </p>
-    </section>
-
-    <!-- Challenges and troubleshooting -->
-    <section class="project-section">
-        <h2>Key challenges and troubleshooting</h2>
-        <ul>
-            <li><strong>Snort false positives:</strong> Tuned rule sets to reduce noise while preserving useful alerts.</li>
-            <li><strong>USB NIC stability:</strong> Required testing different drivers and configurations to achieve reliability.</li>
-            <li><strong>Perimeter independence:</strong> Keeping pfSense separate from Proxmox simplified troubleshooting and improved stability.</li>
-        </ul>
-    </section>
-
-    <!-- Security impact and learning -->
-    <section class="project-section">
-        <h2>Security impact and learning</h2>
-        <p>
-            Remote administration now happens only over authenticated, encrypted WireGuard VPN connections, and traffic is 
-            segmented and logged per VLAN. IoT and DMZ devices are isolated from my main workstation and Proxmox environment.
-        </p>
-        <p>Skills practiced:</p>
-        <ul>
-            <li>VLAN design and segmentation</li>
-            <li>Firewall rule authoring</li>
-            <li>IDS alert interpretation</li>
-            <li>VPN and remote-access design</li>
-        </ul>
-    </section>
-
-    <!-- What I learned / soft skills -->
-    <section class="project-section">
-        <h2>How I approached the work</h2>
-        <p>
-            This project reflects my approach to building and operating systems: systematic troubleshooting, iterative testing, 
-            documenting configurations, and balancing security with usability.
-        </p>
-    </section>
-
-    <!-- Future enhancements -->
-    <section class="project-section">
-        <h2>Future enhancements</h2>
-        <ul>
-            <li>Enable Snort IPS mode with tuned rules</li>
-            <li>Add more granular VLANs</li>
-            <li>Expand NetAlertX metrics</li>
-            <li>Explore high-availability firewall options</li>
-        </ul>
-    </section>
-
-</main>
-
-<hr class="section-divider">
-
-<div class="return-links">
-    <a href="index.html" class="btn btn-outline">← Back to Main Page</a>
-    <a href="homelab-projects.html" class="btn btn-outline">← Back to Homelab Projects</a>
-</div>
