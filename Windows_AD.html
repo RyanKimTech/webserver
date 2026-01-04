@@ -1,0 +1,109 @@
+<section class="project-section">
+    <h2>Proxmox-Based Windows Active Directory Lab</h2>
+
+    <p>
+        This project uses Proxmox to host a complete Windows Server Active Directory environment. 
+        The goal was to simulate a small enterprise domain with centralized authentication, group 
+        policy management, and realistic server roles — all running on a single Proxmox host.
+    </p>
+
+    <h3>Lab Overview</h3>
+    <p>
+        I deployed multiple Windows Server VMs inside Proxmox to create a functional Active Directory 
+        domain. The environment includes domain controllers, a file server, a management workstation, 
+        and Windows client machines for testing authentication and GPO behavior.
+    </p>
+
+    <h3>Virtual Machine Layout</h3>
+    <ul>
+        <li><strong>DC01 – Primary Domain Controller:</strong> Hosts AD DS and DNS, manages users, groups, and OUs.</li>
+        <li><strong>DC02 – Secondary Domain Controller:</strong> Provides redundancy, DNS failover, and replication testing.</li>
+        <li><strong>FS01 – File Server:</strong> Centralized shares for departments and users; used for NTFS/share permission testing.</li>
+        <li><strong>MGMT01 – Management VM:</strong> Windows Server or Windows 10/11 with RSAT for centralized administration.</li>
+        <li><strong>Client VMs:</strong> Windows 10/11 machines joined to the domain for authentication and GPO testing.</li>
+    </ul>
+
+    <h3>Proxmox Configuration Highlights</h3>
+    <ul>
+        <li><strong>Virtual Networking:</strong> Dedicated Proxmox bridge for the lab network, optional VLAN segmentation.</li>
+        <li><strong>Templates & Snapshots:</strong> Base Windows template for rapid VM deployment and easy rollback.</li>
+        <li><strong>Resource Allocation:</strong> Tuned CPU/RAM per VM role for efficient homelab performance.</li>
+    </ul>
+
+    <h3>Skills Practiced</h3>
+    <ul>
+        <li><strong>Active Directory:</strong> Users, groups, OUs, domain joins, DNS management.</li>
+        <li><strong>Group Policy:</strong> Creating, linking, and testing GPOs for users and computers.</li>
+        <li><strong>File Server Security:</strong> NTFS/share permissions, group‑based access control.</li>
+        <li><strong>Redundancy & Replication:</strong> Multi‑DC setup, failover testing, replication validation.</li>
+        <li><strong>Homelab Workflow:</strong> Using Proxmox templates, snapshots, and isolated networks.</li>
+    </ul>
+
+    <div class="nav-buttons">
+        <a href="../index.html" class="blue-button">Back to Main Page</a>
+        <a href="../homelab.html" class="blue-button">Back to Homelab Projects</a>
+    </div>
+</section>
+
+<style>
+/* ------------------------------
+   PROJECT SECTION STYLING
+--------------------------------*/
+.project-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    line-height: 1.6;
+    color: #000; /* all text black */
+}
+
+.project-section h2 {
+    text-align: center;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.project-section h3 {
+    margin-top: 25px;
+    color: #000;
+}
+
+.project-section ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.project-section li {
+    margin-bottom: 8px;
+}
+
+/* ------------------------------
+   BLUE BUTTONS
+--------------------------------*/
+.blue-button {
+    display: inline-block;
+    padding: 10px 18px;
+    margin: 10px 8px 0 0;
+    background-color: #1e73be;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.25s ease;
+}
+
+.blue-button:hover {
+    background-color: #155a96;
+}
+
+/* ------------------------------
+   NAV BUTTON WRAPPER
+--------------------------------*/
+.nav-buttons {
+    margin-top: 30px;
+    text-align: center;
+}
+</style>
