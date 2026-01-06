@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Proxmox Backup Server – Scheduled Backup Automation | Ryan Scott Kim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .page-wrapper {
+      max-width: 800px;
+      margin: 40px auto 60px;
+      padding: 0 16px;
+    }
+
+    header {
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #111827;
+    }
+
+    ul {
+      margin: 0 0 16px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section-divider {
+      margin: 32px 0;
+      border: none;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .return-links {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .page-wrapper {
+        margin-top: 24px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+
+    <header>
+      <p class="subtitle">Virtualization • Automation • Disaster Recovery</p>
+      <h1>Proxmox Backup Server – Scheduled Backup Automation</h1>
+      <p class="meta">By Ryan Scott Kim</p>
+    </header>
+
+    <section>
+      <h2>Overview</h2>
+      <p>
+        This project implements a fully automated backup strategy for my Proxmox VE environment using a dedicated
+        Proxmox Backup Server (PBS). The goal was to create a reliable, hands‑off backup workflow that protects all
+        critical virtual machines while maintaining efficient storage usage through retention policies and deduplication.
+      </p>
+      <p>
+        The result is an enterprise‑style backup system with nightly snapshot jobs, long‑term retention, and verified
+        restore procedures — all running on a lightweight mini PC dedicated to PBS.
+      </p>
+    </section>
+
+    <section>
+      <h2>Key Objectives</h2>
+      <ul>
+        <li><strong>Automate VM backups:</strong> Configure scheduled snapshot jobs for critical infrastructure VMs.</li>
+        <li><strong>Implement retention policies:</strong> Maintain daily, weekly, and monthly restore points.</li>
+        <li><strong>Optimize storage:</strong> Leverage PBS deduplication and compression.</li>
+        <li><strong>Validate disaster recovery:</strong> Perform test restores to ensure backup integrity.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Technical Highlights</h2>
+      <ul>
+        <li><strong>PBS datastore integration:</strong> Added PBS storage to Proxmox VE using secure authentication.</li>
+        <li><strong>Scheduled backup jobs:</strong> Configured nightly snapshot‑based backups for selected VMs.</li>
+        <li><strong>Retention rules:</strong> Applied daily/weekly/monthly retention for long‑term coverage.</li>
+        <li><strong>Backup verification:</strong> Confirmed successful backup creation and datastore deduplication.</li>
+        <li><strong>Restore testing:</strong> Restored VMs to new IDs to validate disaster‑recovery readiness.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Impact</h2>
+      <ul>
+        <li><strong>Improved reliability:</strong> Automated backups ensure consistent protection of critical systems.</li>
+        <li><strong>Disaster‑recovery readiness:</strong> Verified restore procedures guarantee recoverability.</li>
+        <li><strong>Storage efficiency:</strong> Deduplication significantly reduces backup footprint.</li>
+        <li><strong>Enterprise‑grade workflow:</strong> Mirrors real‑world IT backup strategies and retention models.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Skills Demonstrated</h2>
+      <ul>
+        <li><strong>Proxmox VE administration</strong></li>
+        <li><strong>Proxmox Backup Server configuration</strong></li>
+        <li><strong>Backup automation & retention policies</strong></li>
+        <li><strong>Disaster‑recovery testing</strong></li>
+        <li><strong>Homelab infrastructure design</strong></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Outcome</h2>
+      <p>
+        The final setup provides a robust, automated backup solution for my entire Proxmox environment. With nightly or weekly
+        backups, long‑term retention, and verified restore workflows, this project demonstrates strong infrastructure
+        management and disaster‑recovery planning — essential skills for systems engineering and IT operations roles.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="return-links">
+      <a href="index.html" class="btn-primary">← Back to Main Page</a>
+      <a href="homelab-projects.html" class="btn-primary">← Back to Homelab Projects</a>
+    </div>
+
+  </div>
+</body>
+</html>
